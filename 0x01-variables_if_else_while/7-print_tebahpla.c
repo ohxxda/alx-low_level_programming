@@ -1,5 +1,11 @@
 #include <stdio.h>
-
+/**
+ * main - entry point
+ *
+ * Description: print a-z in reverse
+ *
+ * Return: 0
+*/
 int main(void)
 {
 	char ch = 'z';
