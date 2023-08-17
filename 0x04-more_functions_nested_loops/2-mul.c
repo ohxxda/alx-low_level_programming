@@ -1,4 +1,4 @@
-#include "maim.h"
+#include "main.h"
 
 /**
  * mul - multiplies two integers
@@ -7,7 +7,7 @@
  * @b: second input
  *
  * Return: return results
-*/
+ */
 
 int mul(int a, int b)
 {
