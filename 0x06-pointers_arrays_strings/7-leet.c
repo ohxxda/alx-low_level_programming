@@ -7,20 +7,24 @@
 */
 char *leet(char *n)
 {
-	int i, j;
-	char s1[] = "aAeEoOtTIL";
-	char s2[] = "4433007711";
+	int *cp = c;
+	char key[] = {'A', 'E', 'O', 'T', 'L'};
+	int value[] = {4, 3, 0, 7, 1};
+	unsigned int i;
 
-
-	for (i = 0; n[i] != '\0'; i++)
+	while (*c)
 	{
-		for (j = 0; j < 10; j++)
+		for (i = 0; i < sizeof(key) / sizeof(char); i++)
 		{
-			if (n[i] == s1[j])
+			/*32 is the difference between lower case letters and upper case letters*/
+			if (*c == key[i] || *c == key[i] + 32)
 			{
-				n[i] = s2[j];
+				*c = 48 + value[i];
 			}
 		}
+		c++;
 	}
+
 	return (n);
 }
+
