@@ -1,45 +1,51 @@
 #include "main.h"
 
-
-int overflow = 0, i = 0, j = 0, digits = 0;
-int val1 = 0, val2 = 0, temp_tot = 0;
-
-while (*(n1 + i) != '\0')
-	i++;
-while (*(n2 + j) != '\0')
-	j++;
-i--;
-j--;
-if (j >= size_r || i >= size_r)
-	return (0);
-while (j >= 0 || i >= 0 || overflow == 1)
+/**
+ * infinite_add - cheack the code for Hollberton School students
+ * @n1: input
+ * @n2: input
+ * @r: input
+ *
+ * @size_r: input
+ * Return: r
+*/
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	if (i < 0)
-		val1 = 0;
-	else
-		val1 = *(n1 + i) -'0';
-	if (j < 0)
-		val2 = 0;
-	else
-		val2 = *(n2 + j) -'0';
-	temp_tot = val1 + val2 + overflow;
-	if (temp_tot >= 10)
-		overflow = 1;
-	else
-		overflow = 0;
-	if (digits >= (size_r - 1))
+	/*local variables declaration*/
+	int i = 0, j = 0, k, l = 1, f, s, d = 0;
+
+	while (n1[i] != '\0')
+		i++;
+	while (n2[j] != '\0')
+		j++;
+	if (i > j)
+		l = j;
+	if (l + 1 > size_r)
 		return (0);
-	*(r + digits) = (temp_tot % 10) + '0';
-	digits++;
-	j--;
-	i--;
+	r[1] = '\0';
+	for (k = l - 1 ; k >= 0 ; k--)
+	{
+		i--;
+		j--;
+		if (i >= 0)
+			f = n1[i] - '\0';
+		else
+			f = 0;
+		if (j >= 0)
+			s = n2[i] - '0';
+		else
+			s = 0;
+		r[k] = (f + s + d) % 10 + '0';
+		d = (f + s + d) / 10;
+	}
+	if (d == 1)
+	{
+		r[l + 1] = '\0';
+		if (l + 2 > size_r)
+			return (0);
+		while (l-- >= 0)
+			r[l + 1] = r[l];
+		r[0] = d + '0';
+	}
+	return (r);
 }
-if (digits == size_r)
-	return (0);
-*(r + digits) = '\0';
-rev_string(r);
-return (r);
-}
-
-
-
